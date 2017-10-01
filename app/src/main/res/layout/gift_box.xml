@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context="com.example.obama.venus.gift_box">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dip"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/back" />
+
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="禮物盒"
+                android:textAlignment="center"
+                android:textColor="#666666"
+                android:textSize="22sp" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="60dip"
+                android:layout_height="50dip"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dip"
+                android:background="@android:color/transparent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dip"
+            android:orientation="horizontal"></LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/gift_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

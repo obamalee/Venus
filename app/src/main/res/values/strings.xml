@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Venus</string>
+    <string name="movie_name">威尼斯影城\nVenice Cinemas</string>
+    <string name="title_activity_food_list"></string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_transfer">transfer</string>
+    <string name="title_activity_information">information</string>
+    <string-array name="sex">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+</resources>

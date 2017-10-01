@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.example.obama.venus.transfer">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="#FFEE99"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton17"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:scaleType="fitCenter"
+                android:background="#FFEE99"
+                app:srcCompat="@drawable/back1" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.2"
+                android:background="#FFEE99"
+                android:text="" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.1"
+            android:background="#FFEE99"
+            android:text="請選擇交通方式\nHOW TO GO"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="38dp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#4682B4"
+            android:drawableLeft="@drawable/bus"
+            android:paddingLeft="80dip"
+            android:paddingRight="80dip"
+            android:text="公車\nBUS"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#DCDCDC"
+            android:drawableLeft="@drawable/car"
+            android:paddingLeft="80dip"
+            android:paddingRight="80dip"
+            android:text="汽車\nCAR"
+            android:textAlignment="center"
+            android:textSize="30dp" />
+
+        <Button
+            android:id="@+id/button16"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#FFA07A"
+            android:drawableLeft="@drawable/bike"
+            android:paddingLeft="80dip"
+            android:paddingRight="80dip"
+            android:text="腳踏車\nBIKE"
+            android:textSize="30dp" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

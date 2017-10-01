@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    tools:context="com.example.obama.venus.privacy">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imageButton1"
+                    android:layout_width="60dip"
+                    android:layout_height="50dip"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dip"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/back" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.17"
+                    android:text="個人檔案"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="60dip"
+                    android:layout_height="50dip"
+                    android:layout_marginRight="8dip"
+                    app:srcCompat="@android:color/transparent" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dip"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginRight="15dip"
+                    android:background="@drawable/bottom_line">
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="40dip"
+                    android:layout_height="40dip"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginTop="6dip"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter" />
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector"
+                    android:paddingLeft="75dip"
+                    android:text="編輯個人資料"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginRight="15dip"
+                    android:background="@drawable/bottom_line">
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="40dip"
+                    android:layout_height="40dip"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginTop="6dip"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_selector"
+                    android:paddingLeft="75dip"
+                    android:text="更改密碼"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

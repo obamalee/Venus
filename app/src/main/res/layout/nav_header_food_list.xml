@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    >
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="   >  威尼斯影城"
+        android:textAlignment="viewStart"
+        android:textSize="16dp"
+        />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="   >  威尼斯報報"
+        android:textAlignment="viewStart"
+        android:textSize="16dp"/>
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="   >  特價 ON SALE"
+        android:textAlignment="viewStart"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="   >  食 FOOD"
+        android:textAlignment="viewStart"
+        android:textSize="16dp"/>
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="   >  衣 CLOTHING"
+        android:textAlignment="viewStart"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="   >  住 HOUSING"
+        android:textAlignment="viewStart"
+        android:textSize="16dp"/>
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="   >  行  TRAFFIC"
+        android:textAlignment="viewStart"
+        android:textSize="16dp"/>
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="   >  樂 RECREATION"
+        android:textAlignment="viewStart"
+        android:textSize="16dp"/>
+
+    <Button
+        android:id="@+id/button14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="   >  筆記本 NOTES"
+        android:textAlignment="viewStart"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/button15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:drawableLeft="@drawable/client"
+        android:text="   會員"
+        android:textAlignment="viewStart"
+        android:textSize="18dp"/>
+</LinearLayout>
