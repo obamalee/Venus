@@ -1,5 +1,7 @@
 package com.example.obama.venus;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -17,10 +19,20 @@ import org.json.JSONObject;
 
 public class gift_record extends AppCompatActivity {
 
+    //session
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String mb_id = "mb_idlKey";
+    SharedPreferences sharedpreferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gift_record);
+
+        //抓取 mb_id
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        final String my_id = sharedpreferences.getString(mb_id, "F");
 
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectDiskReads()
@@ -45,7 +57,7 @@ public class gift_record extends AppCompatActivity {
 
         LinearLayout record_list = (LinearLayout)findViewById(R.id.record_list);
         try {
-            final String result = DBConnector.executeQuery("SELECT * FROM gift_record INNER JOIN gift ON gift_record.gift_id = gift.gift_id WHERE mb_id = '1' ORDER BY updated_at DESC");
+            final String result = DBConnector.executeQuery("SELECT * FROM gift_record INNER JOIN gift ON gift_record.gift_id = gift.gift_id WHERE mb_id = '"+my_id+"' ORDER BY updated_at DESC");
 
             JSONArray jsonArray = new JSONArray(result);
             for(int i = 0; i < jsonArray.length(); i++) {

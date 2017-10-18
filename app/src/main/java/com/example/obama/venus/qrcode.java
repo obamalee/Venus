@@ -1,5 +1,7 @@
 package com.example.obama.venus;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,10 +23,19 @@ import java.util.Map;
 
 public class qrcode extends AppCompatActivity {
 
+    //session
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String mb_id = "mb_idlKey";
+    SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qrcode);
+
+        //抓取 mb_id
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        final String my_id = sharedpreferences.getString(mb_id, "F");
 
         ImageButton imageButton1 = (ImageButton) findViewById(R.id.imageButton1);
         imageButton1.setOnClickListener(new Button.OnClickListener() {
@@ -36,7 +47,7 @@ public class qrcode extends AppCompatActivity {
         });
 
         // QR code 的內容
-        String QRCodeContent = "1";
+        String QRCodeContent = my_id;
         // QR code 寬度
         int QRCodeWidth = 200;
         // QR code 高度

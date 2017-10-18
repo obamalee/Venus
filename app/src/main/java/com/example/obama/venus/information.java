@@ -1,6 +1,8 @@
 package com.example.obama.venus;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -20,10 +22,20 @@ import java.io.InputStream;
 
 public class information extends AppCompatActivity {
 
+    //session
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String mb_id = "mb_idlKey";
+    SharedPreferences sharedpreferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.information);
+
+        //抓取 mb_id
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        final String my_id = sharedpreferences.getString(mb_id, "F");
 
         ImageButton imageButton15 = (ImageButton) findViewById(R.id.imageButton15);
         imageButton15.setOnClickListener(new Button.OnClickListener() {
@@ -84,7 +96,7 @@ public class information extends AppCompatActivity {
         TextView name = (TextView)findViewById(R.id.textView18);
         TextView mail = (TextView)findViewById(R.id.textView19);
         try {
-            String result = DBConnector.executeQuery("SELECT * FROM member WHERE mb_id = '1'");
+            String result = DBConnector.executeQuery("SELECT * FROM member WHERE mb_id = '"+my_id+"'");
 
             JSONArray jsonArray = new JSONArray(result);
 

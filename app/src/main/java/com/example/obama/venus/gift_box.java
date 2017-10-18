@@ -1,5 +1,8 @@
 package com.example.obama.venus;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -22,10 +25,19 @@ import java.io.InputStream;
 
 public class gift_box extends AppCompatActivity {
 
+    //session
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String mb_id = "mb_idlKey";
+    SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gift_box);
+
+        //抓取 mb_id
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String my_id = sharedpreferences.getString(mb_id, "F");
 
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectDiskReads()
@@ -50,7 +62,7 @@ public class gift_box extends AppCompatActivity {
 
         LinearLayout gift_list = (LinearLayout)findViewById(R.id.gift_list);
         try {
-            final String result = DBConnector.executeQuery("SELECT * FROM gift_box INNER JOIN gift ON gift.gift_id = gift_box.gift_id INNER JOIN shop ON gift.sh_id = shop.sh_id WHERE mb_id = '1' ");
+            final String result = DBConnector.executeQuery("SELECT * FROM gift_box INNER JOIN gift ON gift.gift_id = gift_box.gift_id INNER JOIN shop ON gift.sh_id = shop.sh_id WHERE mb_id = '"+my_id+"' ");
 
             JSONArray jsonArray = new JSONArray(result);
             for(int i = 0; i < jsonArray.length(); i++) {
@@ -61,6 +73,16 @@ public class gift_box extends AppCompatActivity {
                 gift_aaa.setOrientation(LinearLayout.HORIZONTAL);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 layoutParams.setMargins(0,30,0,0);
+                gift_aaa.setOnClickListener(new Button.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setClass(gift_box.this, qrcode.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        gift_box.this.finish();
+                    }
+                });
 
                 LinearLayout img = new LinearLayout(gift_box.this);
                 img.setOrientation(LinearLayout.VERTICAL);

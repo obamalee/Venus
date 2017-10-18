@@ -45,7 +45,9 @@ public class gift extends AppCompatActivity {
         imageButton1.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                Intent intent = new Intent();
+                intent.setClass(gift.this,vcoin.class);
+                startActivity(intent);
                 gift.this.finish();
             }
         });
@@ -62,7 +64,8 @@ public class gift extends AppCompatActivity {
                 LinearLayout gift_aaa = new LinearLayout(gift.this);
                 gift_aaa.setOrientation(LinearLayout.HORIZONTAL);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                layoutParams.setMargins(0,0,0,0);
+                layoutParams.setMargins(0,20,0,20);
+                gift_aaa.setPadding(0,0,0,0);
                 gift_aaa.setOnClickListener(new Button.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -78,20 +81,20 @@ public class gift extends AppCompatActivity {
                 img.setOrientation(LinearLayout.VERTICAL);
                 LinearLayout.LayoutParams layoutParams5 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 layoutParams5.setMargins(15,0,0,0);
-                img.setPadding(0,30,0,30);
+                img.setPadding(0,0,0,0);
 
                 ImageView gift_img = new ImageView(gift.this);
                 new DownloadImageTask(gift_img)
                         .execute(jsonData.getString("gift_pic"));
                 gift_img.setScaleType(ImageView.ScaleType.FIT_XY);
-                LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(200, 200);
+                LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(250, 250);
                 layoutParams1.setMargins(15,0,0,0);
 
                 LinearLayout text = new LinearLayout(gift.this);
                 text.setOrientation(LinearLayout.VERTICAL);
                 LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
                 layoutParams2.setMargins(30,0,0,0);
-                text.setPadding(0,30,0,30);
+                text.setPadding(0,0,0,0);
                 text.setBackground(this.getResources().getDrawable(R.drawable.bottom_line_black));
                 layoutParams2.gravity = Gravity.CENTER_VERTICAL;
 
@@ -113,13 +116,13 @@ public class gift extends AppCompatActivity {
                 gift_bbb.setOrientation(LinearLayout.HORIZONTAL);
                 LinearLayout.LayoutParams layoutParams3 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 gift_bbb.setPadding(0,0,0,0);
+                gift_bbb.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_VERTICAL);
                 layoutParams3.gravity = Gravity.CENTER_VERTICAL;
 
                 ImageView coin_img = new ImageView(gift.this);
                 coin_img.setBackground(this.getResources().getDrawable(R.drawable.vcoins));
                 gift_img.setScaleType(ImageView.ScaleType.FIT_XY);
-                LinearLayout.LayoutParams layoutParams4 = new LinearLayout.LayoutParams(40, 40);
-                layoutParams4.gravity = Gravity.CENTER_VERTICAL;
+                LinearLayout.LayoutParams layoutParams4 = new LinearLayout.LayoutParams(45, 45);
                 layoutParams1.setMargins(0,0,10,0);
 
                 TextView gift_coin = new TextView(gift.this);

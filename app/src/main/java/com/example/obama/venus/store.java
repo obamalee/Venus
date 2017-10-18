@@ -279,7 +279,7 @@ public class store extends AppCompatActivity {
                     store_offer.setText(jsonData.getString("offer_text"));
 
 
-                    offer_img.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    offer_img.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
                     new DownloadImageTask(offer_img)
                             .execute("http://140.135.168.101:3000/uploads/"+jsonData.getString("offer_pic"));
                     offer_img.setScaleType(ImageView.ScaleType.FIT_XY);

@@ -11,8 +11,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -65,16 +65,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.75"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageView9"
                 android:layout_width="125dip"
                 android:layout_height="125dip"
+                android:layout_gravity="center"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/vcoins"
-                android:layout_gravity="center"/>
+                app:srcCompat="@drawable/vcoins" />
         </LinearLayout>
 
         <LinearLayout
@@ -90,7 +90,7 @@
                 android:layout_weight="1"
                 android:text="目前累積的V幣"
                 android:textAlignment="center"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -104,9 +104,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="123"
-                android:textSize="24sp"
-                android:textAlignment="center"/>
+                android:text=""
+                android:textAlignment="center"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -119,10 +119,10 @@
                 android:id="@+id/button22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="30dip"
                 android:layout_marginRight="15dip"
                 android:layout_weight="1"
-                android:layout_gravity="center_vertical"
                 android:background="#44ffffff"
                 android:text="   我的紀錄 ＞"
                 android:textSize="18sp" />
@@ -131,10 +131,10 @@
                 android:id="@+id/button23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dip"
                 android:layout_marginRight="30dip"
                 android:layout_weight="1"
-                android:layout_gravity="center_vertical"
                 android:background="#44ffffff"
                 android:text="   好禮兌換 ＞"
                 android:textSize="18sp" />

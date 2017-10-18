@@ -1,6 +1,8 @@
 package com.example.obama.venus;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -14,10 +16,19 @@ import org.json.JSONObject;
 
 public class record extends AppCompatActivity {
 
+    //session
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String mb_id = "mb_idlKey";
+    SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.record);
+
+        //抓取 mb_id
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        final String my_id = sharedpreferences.getString(mb_id, "F");
 
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectDiskReads()
@@ -63,7 +74,7 @@ public class record extends AppCompatActivity {
         });
 
         try {
-            String result = DBConnector.executeQuery("SELECT point FROM point WHERE mb_id='1'");
+            String result = DBConnector.executeQuery("SELECT point FROM point WHERE mb_id='"+my_id+"'");
 
             JSONArray jsonArray = new JSONArray(result);
 

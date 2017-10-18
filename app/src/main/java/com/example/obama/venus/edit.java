@@ -1,6 +1,8 @@
 package com.example.obama.venus;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -23,6 +25,12 @@ import java.io.InputStream;
 import java.util.Calendar;
 
 public class edit extends AppCompatActivity {
+
+    //session
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String mb_id = "mb_idlKey";
+    SharedPreferences  sharedpreferences;
+
     private int mYear, mMonth, mDay;
     String name_input;
     String date;
@@ -32,12 +40,18 @@ public class edit extends AppCompatActivity {
     RadioButton man;
     RadioButton woman;
     RadioGroup group;
+    String my_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit);
+
+        //抓取 mb_id
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        my_id = sharedpreferences.getString(mb_id, "F");
+
         try {
-            String result = DBConnector.executeQuery("SELECT * FROM member WHERE mb_id = '1'");
+            String result = DBConnector.executeQuery("SELECT * FROM member WHERE mb_id = '"+my_id+"'");
 
             JSONArray jsonArray = new JSONArray(result);
 
@@ -112,7 +126,7 @@ public class edit extends AppCompatActivity {
                 name_input = name.getText().toString();
                 EditText phone = (EditText)findViewById(R.id.editText7);
                 phone_input = phone.getText().toString();
-                update.executeQuery("member SET mb_name = '"+name_input+"',mb_birth = '"+date+"',mb_phone = '"+phone_input+"' WHERE mb_id = '1'");
+                update.executeQuery("member SET mb_name = '"+name_input+"',mb_birth = '"+date+"',mb_phone = '"+phone_input+"' WHERE mb_id = '"+my_id+"'");
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 edit.this.finish();
             }
@@ -123,6 +137,8 @@ public class edit extends AppCompatActivity {
     private RadioGroup.OnCheckedChangeListener radGrpRegionOnCheckedChange =
             new RadioGroup.OnCheckedChangeListener()
             {
+
+
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId)
                 {
@@ -130,7 +146,7 @@ public class edit extends AppCompatActivity {
                     switch (checkedId)
                     {
                         case R.id.radioButton: //case mRadioButton0.getId():
-                            update.executeQuery("member SET mb_gender = '男' WHERE mb_id = '1'");
+                            update.executeQuery("member SET mb_gender = '男' WHERE mb_id = '"+my_id+"'");
                             break;
 
                         case R.id.radioButton2: //case mRadioButton1.getId():

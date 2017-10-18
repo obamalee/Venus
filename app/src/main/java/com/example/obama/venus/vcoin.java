@@ -1,6 +1,8 @@
 package com.example.obama.venus;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,10 +15,19 @@ import org.json.JSONObject;
 
 public class vcoin extends AppCompatActivity {
 
+    //session
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String mb_id = "mb_idlKey";
+    SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vcoin);
+
+        //抓取 mb_id
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        final String my_id = sharedpreferences.getString(mb_id, "F");
 
         ImageButton imageButton1 = (ImageButton) findViewById(R.id.imageButton1);
         imageButton1.setOnClickListener(new Button.OnClickListener() {
@@ -29,7 +40,7 @@ public class vcoin extends AppCompatActivity {
 
         TextView coins = (TextView)findViewById(R.id.textView21);
         try {
-            String result = DBConnector.executeQuery("SELECT * FROM point WHERE mb_id = '1'");
+            String result = DBConnector.executeQuery("SELECT * FROM point WHERE mb_id = '"+my_id+"'");
             JSONArray jsonArray = new JSONArray(result);
             for(int i = 0; i < jsonArray.length(); i++)
             {
@@ -59,6 +70,7 @@ public class vcoin extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(vcoin.this,gift.class);
                 startActivity(intent);
+                vcoin.this.finish();
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });

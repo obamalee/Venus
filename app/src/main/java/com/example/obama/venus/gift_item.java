@@ -1,7 +1,9 @@
 package com.example.obama.venus;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -25,6 +27,12 @@ import java.util.Date;
 import static java.lang.Integer.parseInt;
 
 public class gift_item extends AppCompatActivity {
+
+    //session
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String mb_id = "mb_idlKey";
+    SharedPreferences sharedpreferences;
+
     String gift_id;
     String name;
     int coin;
@@ -33,6 +41,10 @@ public class gift_item extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gift_item);
+
+        //抓取 mb_id
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        final String my_id = sharedpreferences.getString(mb_id, "F");
 
         ImageButton imageButton1 = (ImageButton) findViewById(R.id.imageButton1);
         imageButton1.setOnClickListener(new Button.OnClickListener() {
@@ -70,7 +82,7 @@ public class gift_item extends AppCompatActivity {
                     public void onClick(View v) {
 
                         try {
-                            final String result = DBConnector.executeQuery("SELECT * FROM point WHERE mb_id = '1'");
+                            final String result = DBConnector.executeQuery("SELECT * FROM point WHERE mb_id = '"+my_id+"'");
                             JSONArray jsonArray = new JSONArray(result);
                             for(int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonData = jsonArray.getJSONObject(i);
@@ -84,16 +96,25 @@ public class gift_item extends AppCompatActivity {
                         {
                             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
                             Date curDate = new Date(System.currentTimeMillis()) ; // 獲取當前時間
-                            String str = formatter.format(curDate);
+                            final String str = formatter.format(curDate);
 
-                            delete.executeQuery("INSERT INTO gift_box (gift_id,mb_id) VALUES ("+gift_id+",1)");
-                            update.executeQuery("point SET point = '"+(point-coin)+"' WHERE mb_id = '1' ");
-                            delete.executeQuery("INSERT INTO gift_record (gift_id,mb_id,less_point,updated_at) VALUES ('"+gift_id+"','1','"+coin+"','"+str+"')");
                             new AlertDialog.Builder(gift_item.this)
-                                    .setTitle("已兌換成功")//設定視窗標題
+                                    .setTitle("確定兌換")//設定視窗標題
                                     //.setIcon(R.mipmap.ic_launcher)//設定對話視窗圖示
-                                    .setMessage("已成功兌換"+name)//設定顯示的文字
-                                    .setPositiveButton("關閉視窗",new DialogInterface.OnClickListener(){
+                                    .setMessage("確定要兌換"+name+"?\n"+"兌換禮品之後，將不在退還Venus Point呦!")//設定顯示的文字
+                                    .setNegativeButton("確定兌換",new DialogInterface.OnClickListener(){
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            delete.executeQuery("INSERT INTO gift_box (gift_id,mb_id) VALUES ("+gift_id+",1)");
+                                            update.executeQuery("point SET point = '"+(point-coin)+"' WHERE mb_id = '1' ");
+                                            delete.executeQuery("INSERT INTO gift_record (gift_id,mb_id,less_point,updated_at) VALUES ('"+gift_id+"','"+my_id+"','"+coin+"','"+str+"')");
+                                            Intent intent = new Intent();
+                                            intent.setClass(gift_item.this,gift_box.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    })//設定結束的子視窗
+                                    .setPositiveButton("下次再換",new DialogInterface.OnClickListener(){
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             finish();

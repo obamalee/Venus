@@ -1,6 +1,8 @@
 package com.example.obama.venus;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -33,11 +35,21 @@ import static java.lang.Integer.parseInt;
 
 public class food_list extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    //session
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String mb_id = "mb_idlKey";
+    SharedPreferences sharedpreferences;
+
     String type;
     String a;
     String sql;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //抓取 mb_id
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        final String my_id = sharedpreferences.getString(mb_id, "F");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.food_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -176,6 +188,28 @@ public class food_list extends AppCompatActivity
             }
         });
 
+        Button logout = (Button) findViewById(R.id.button26);
+        logout.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(mb_id, "F");
+                editor.commit();
+                //editor.remove("mb_id").commit();
+                //Log.d(my_id);
+                //SharedPreferences.Editor clear (String "mb_id);
+                //editor.clear();
+                //editor.commit();
+                Intent intent = new Intent();
+                intent.setClass(food_list.this,login.class);
+                //intent.putExtra("shop_type","6");
+                startActivity(intent);
+                food_list.this.finish();
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+
 
 
 
@@ -183,7 +217,7 @@ public class food_list extends AppCompatActivity
         try {
             if(type.equals("5"))
             {
-                sql = "SELECT * FROM notes INNER JOIN shop ON notes.sh_id = shop.sh_id WHERE mb_id = '1'";
+                sql = "SELECT * FROM notes INNER JOIN shop ON notes.sh_id = shop.sh_id WHERE mb_id = '"+my_id+"'";
             }else if(type.equals("6"))
             {
                 sql = "SELECT * FROM shop INNER JOIN offer ON shop.sh_id = offer.sh_id ORDER BY offer_level_id ASC";
@@ -267,7 +301,7 @@ public class food_list extends AppCompatActivity
                 layoutParams4.setMargins(8,0,20,0);
                 shop_like.setBackgroundColor(Color.TRANSPARENT);
                 try {
-                    String result1 = DBConnector.executeQuery("SELECT * FROM member INNER JOIN notes ON member.mb_id = notes.mb_id WHERE sh_id= '" + shop_num + "' AND notes.mb_id = '1'");
+                    String result1 = DBConnector.executeQuery("SELECT * FROM member INNER JOIN notes ON member.mb_id = notes.mb_id WHERE sh_id= '" + shop_num + "' AND notes.mb_id = '"+my_id+"'");
                     JSONArray jsonArray1 = new JSONArray(result1);
                     shop_like.setBackground(this.getResources().getDrawable(R.drawable.heart2));
                 } catch (Exception e) {
@@ -292,14 +326,14 @@ public class food_list extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         try {
-                            String result1 = DBConnector.executeQuery("SELECT * FROM member INNER JOIN notes ON member.mb_id = notes.mb_id WHERE sh_id= '" + shop_num + "' AND notes.mb_id = '1'");
+                            String result1 = DBConnector.executeQuery("SELECT * FROM member INNER JOIN notes ON member.mb_id = notes.mb_id WHERE sh_id= '" + shop_num + "' AND notes.mb_id = '"+my_id+"'");
                             JSONArray jsonArray1 = new JSONArray(result1);
                                 int like = parseInt(a);
                                 like--;
                                 shop_heart.setText(String.valueOf(like));
                                 a = String.valueOf(like);
                                 update.executeQuery("shop SET sh_like ='"+like+"' WHERE sh_id = '"+shop_num+"'");
-                                delete.executeQuery("DELETE FROM notes WHERE sh_id = "+shop_num+" AND mb_id = 1");
+                                delete.executeQuery("DELETE FROM notes WHERE sh_id = "+shop_num+" AND mb_id = "+my_id+"");
                                 shop_like.setBackground(getResources().getDrawable(R.drawable.heart));
 
                         } catch (Exception e) {
@@ -308,7 +342,7 @@ public class food_list extends AppCompatActivity
                             shop_heart.setText(String.valueOf(like));
                             a = String.valueOf(like);
                             update.executeQuery("shop SET sh_like ='" + like + "' WHERE sh_id = '" + shop_num + "'");
-                            delete.executeQuery("INSERT INTO notes(mb_id,sh_id) VALUES (1," + shop_num + ")");
+                            delete.executeQuery("INSERT INTO notes(mb_id,sh_id) VALUES ("+my_id+"," + shop_num + ")");
                             shop_like.setBackground(getResources().getDrawable(R.drawable.heart2));
                         }
 
