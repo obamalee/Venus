@@ -66,8 +66,13 @@
         <activity android:name=".gift_box" />
         <activity android:name=".record" />
         <activity android:name=".shop_record" />
-        <activity android:name=".gift_record"></activity>
-        <service android:name=".MyService" android:enabled="true"/>
+        <activity android:name=".gift_record" />
+
+        <service
+            android:name=".MyService"
+            android:enabled="true" />
+
+        <activity android:name=".gift_box_used"></activity>
     </application>
 
 </manifest>

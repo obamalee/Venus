@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context="com.example.obama.venus.gift_box">
+    tools:context="com.example.obama.venus.gift_box_used">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="禮物盒"
+                android:text="已兌換禮品"
                 android:textAlignment="center"
                 android:textColor="#666666"
                 android:textSize="22sp" />
@@ -56,18 +56,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dip"
-            android:gravity="right"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button27"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dip"
-                android:background="@android:color/transparent"
-                android:text="查看已兌換紀錄  >"
-                android:textAlignment="textEnd"
-                android:textColor="#666666" />
         </LinearLayout>
 
         <ScrollView
@@ -82,4 +72,5 @@
         </ScrollView>
 
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
