@@ -58,39 +58,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.8"
-            android:background="#22FFFFFF"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <com.example.obama.venus.CircleImageView
-                android:id="@+id/photo"
-                android:layout_width="130dip"
-                android:layout_height="130dip"
-                android:layout_gravity="center" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1.05"
-            android:background="#22FFFFFF"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:text="更換大頭貼"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.1"
             android:orientation="horizontal"></LinearLayout>
 
         <LinearLayout
@@ -261,7 +229,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.65"
             android:orientation="horizontal"></LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

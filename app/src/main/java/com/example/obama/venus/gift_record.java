@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
@@ -23,7 +22,7 @@ public class gift_record extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String mb_id = "mb_idlKey";
     SharedPreferences sharedpreferences;
-
+    String my_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,19 +31,8 @@ public class gift_record extends AppCompatActivity {
 
         //抓取 mb_id
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        final String my_id = sharedpreferences.getString(mb_id, "F");
+        my_id = sharedpreferences.getString(mb_id, "F");
 
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                .detectDiskReads()
-                .detectDiskWrites()
-                .detectNetwork()
-                .penaltyLog()
-                .build());
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                .detectLeakedSqlLiteObjects()
-                .penaltyLog()
-                .penaltyDeath()
-                .build());
 
         ImageButton imageButton1 = (ImageButton) findViewById(R.id.imageButton1);
         imageButton1.setOnClickListener(new Button.OnClickListener() {
@@ -54,7 +42,10 @@ public class gift_record extends AppCompatActivity {
                 gift_record.this.finish();
             }
         });
+        findViews();
+    }
 
+    private void findViews(){
         LinearLayout record_list = (LinearLayout)findViewById(R.id.record_list);
         try {
             final String result = DBConnector.executeQuery("SELECT * FROM gift_record INNER JOIN gift ON gift_record.gift_id = gift.gift_id WHERE mb_id = '"+my_id+"' ORDER BY updated_at DESC");
@@ -119,5 +110,6 @@ public class gift_record extends AppCompatActivity {
         } catch(Exception e) {
             // Log.e("log_tag", e.toString());
         }
+
     }
 }

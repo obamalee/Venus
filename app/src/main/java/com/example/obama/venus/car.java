@@ -29,7 +29,7 @@ public class car extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra("location","桃園市中壢區九和一街35號");
+                intent.putExtra("location","桃園市中壢區慈惠一街150號");
                 intent.putExtra("name","銀河廣場停車場");
                 intent.setClass(car.this, maps.class);
                 startActivity(intent);

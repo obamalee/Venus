@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -29,18 +28,6 @@ public class gift extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gift);
 
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                .detectDiskReads()
-                .detectDiskWrites()
-                .detectNetwork()
-                .penaltyLog()
-                .build());
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                .detectLeakedSqlLiteObjects()
-                .penaltyLog()
-                .penaltyDeath()
-                .build());
-
         ImageButton imageButton1 = (ImageButton) findViewById(R.id.imageButton1);
         imageButton1.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -52,6 +39,11 @@ public class gift extends AppCompatActivity {
             }
         });
 
+        findViews();
+
+    }
+
+    private void findViews() {
         LinearLayout gift_list = (LinearLayout)findViewById(R.id.gift_list);
         try {
             final String result = DBConnector.executeQuery("SELECT * FROM shop INNER JOIN gift ON shop.sh_id = gift.sh_id ");

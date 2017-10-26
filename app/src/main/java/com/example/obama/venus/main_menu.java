@@ -160,10 +160,17 @@ public class main_menu extends AppCompatActivity {
         imageButton6.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(main_menu.this, food_list.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                new AlertDialog.Builder(main_menu.this)
+                        .setTitle("尚未開放")//設定視窗標題
+                        //.setIcon(R.mipmap.ic_launcher)//設定對話視窗圖示
+                        .setMessage("尚未開放，請敬請期待")//設定顯示的文字
+                        .setPositiveButton("關閉視窗",new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })//設定結束的子視窗
+                        .show();//呈現對話視窗
             }
         });
 

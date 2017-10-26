@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -15,32 +16,43 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login">
+        <activity android:name=".login"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main_menu" />
+        <activity android:name=".main_menu"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".food_list"
             android:label="@string/title_activity_food_list"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".cinema" />
-        <activity android:name=".transfer" />
-        <activity android:name=".information" />
-        <activity android:name=".privacy" />
-        <activity android:name=".vcoin" />
-        <activity android:name=".edit" />
-        <activity android:name=".cupon" />
-        <activity android:name=".store" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".cinema"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".transfer"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".information"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".privacy"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".vcoin"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".edit"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".cupon"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".store"
+            android:screenOrientation="portrait"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -58,21 +70,31 @@
 
         <activity
             android:name=".maps"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".car" />
-        <activity android:name=".qrcode" />
-        <activity android:name=".gift" />
-        <activity android:name=".gift_item" />
-        <activity android:name=".gift_box" />
-        <activity android:name=".record" />
-        <activity android:name=".shop_record" />
-        <activity android:name=".gift_record" />
+        <activity android:name=".car"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".qrcode"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".gift"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".gift_item"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".gift_box"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".record"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".shop_record"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".gift_record"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".MyService"
             android:enabled="true" />
 
-        <activity android:name=".gift_box_used"></activity>
+        <activity android:name=".gift_box_used"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

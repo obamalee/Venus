@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -44,11 +43,12 @@ public class food_list extends AppCompatActivity
     String type;
     String a;
     String sql;
+    String my_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //抓取 mb_id
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        final String my_id = sharedpreferences.getString(mb_id, "F");
+        my_id = sharedpreferences.getString(mb_id, "F");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.food_list);
@@ -59,23 +59,14 @@ public class food_list extends AppCompatActivity
 
         setSupportActionBar(toolbar);
 
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                .detectDiskReads()
-                .detectDiskWrites()
-                .detectNetwork()
-                .penaltyLog()
-                .build());
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                .detectLeakedSqlLiteObjects()
-                .penaltyLog()
-                .penaltyDeath()
-                .build());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        findViews();
 
         Button Button7 = (Button) findViewById(R.id.button7);
         Button7.setOnClickListener(new Button.OnClickListener() {
@@ -212,7 +203,9 @@ public class food_list extends AppCompatActivity
 
 
 
+    }
 
+    private void findViews() {
         LinearLayout shop = (LinearLayout)findViewById(R.id.shop);
         try {
             if(type.equals("5"))
@@ -233,14 +226,14 @@ public class food_list extends AppCompatActivity
                 JSONObject jsonData = jsonArray.getJSONObject(i);
                 LinearLayout shop_aaa = new LinearLayout(food_list.this);
                 shop_aaa.setOrientation(LinearLayout.HORIZONTAL);
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                layoutParams.setMargins(0,20,0,0);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                layoutParams.setMargins(0,0,0,0);
                 layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
 
                 final String shop_num = jsonData.getString("sh_id");
 
                 ImageButton shop_img = new ImageButton(food_list.this);
-                shop_img.setLayoutParams(new LinearLayout.LayoutParams(1000, 500));
+                shop_img.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500));
                 new DownloadImageTask(shop_img)
                         .execute("http://140.135.168.101:3000/uploads/"+jsonData.getString("sh_pic1"));
                 shop_img.setBackground(this.getResources().getDrawable(R.drawable.liner));
@@ -258,17 +251,17 @@ public class food_list extends AppCompatActivity
                 });
 
 
-               shop_aaa.addView(shop_img);
-               shop.addView(shop_aaa,layoutParams);
+                shop_aaa.addView(shop_img);
+                shop.addView(shop_aaa,layoutParams);
 
                 LinearLayout shop_bbb = new LinearLayout(food_list.this);
                 shop_aaa.setOrientation(LinearLayout.HORIZONTAL);
-                LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(1000, LinearLayout.LayoutParams.WRAP_CONTENT);
+                LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 120);
                 layoutParams2.gravity = Gravity.CENTER;
                 shop_bbb.setBackground(this.getResources().getDrawable(R.drawable.liner));
 
                 TextView shop_name = new TextView(food_list.this);
-                shop_name.setLayoutParams(new LinearLayout.LayoutParams(650,LinearLayout.LayoutParams.WRAP_CONTENT));
+                shop_name.setLayoutParams(new LinearLayout.LayoutParams(700,LinearLayout.LayoutParams.WRAP_CONTENT));
                 shop_name.setPadding(10,5,0,5);
                 shop_name.setText(jsonData.getString("sh_name"));
                 shop_name.setTextSize(20);
@@ -298,7 +291,7 @@ public class food_list extends AppCompatActivity
                 final ImageButton shop_like = new ImageButton(food_list.this);
                 LinearLayout.LayoutParams layoutParams4 = new LinearLayout.LayoutParams(80,80);
                 layoutParams4.gravity = Gravity.CENTER;
-                layoutParams4.setMargins(8,0,20,0);
+                layoutParams4.setMargins(20,0,20,0);
                 shop_like.setBackgroundColor(Color.TRANSPARENT);
                 try {
                     String result1 = DBConnector.executeQuery("SELECT * FROM member INNER JOIN notes ON member.mb_id = notes.mb_id WHERE sh_id= '" + shop_num + "' AND notes.mb_id = '"+my_id+"'");
@@ -328,13 +321,13 @@ public class food_list extends AppCompatActivity
                         try {
                             String result1 = DBConnector.executeQuery("SELECT * FROM member INNER JOIN notes ON member.mb_id = notes.mb_id WHERE sh_id= '" + shop_num + "' AND notes.mb_id = '"+my_id+"'");
                             JSONArray jsonArray1 = new JSONArray(result1);
-                                int like = parseInt(a);
-                                like--;
-                                shop_heart.setText(String.valueOf(like));
-                                a = String.valueOf(like);
-                                update.executeQuery("shop SET sh_like ='"+like+"' WHERE sh_id = '"+shop_num+"'");
-                                delete.executeQuery("DELETE FROM notes WHERE sh_id = "+shop_num+" AND mb_id = "+my_id+"");
-                                shop_like.setBackground(getResources().getDrawable(R.drawable.heart));
+                            int like = parseInt(a);
+                            like--;
+                            shop_heart.setText(String.valueOf(like));
+                            a = String.valueOf(like);
+                            update.executeQuery("shop SET sh_like ='"+like+"' WHERE sh_id = '"+shop_num+"'");
+                            delete.executeQuery("DELETE FROM notes WHERE sh_id = "+shop_num+" AND mb_id = "+my_id+"");
+                            shop_like.setBackground(getResources().getDrawable(R.drawable.heart));
 
                         } catch (Exception e) {
                             int like = parseInt(a);

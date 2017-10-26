@@ -69,8 +69,6 @@ public class information extends AppCompatActivity {
             }
         });
 
-        CircleImageView photo= (CircleImageView) findViewById(R.id.photo);
-
         ImageView imageView4 = (ImageView) findViewById(R.id.imageView4);
         new DownloadImageTask((ImageView) findViewById(R.id.imageView4))
                 .execute("http://140.135.168.101/ui/icon/people-icon--icon-search-engine-18.png");
@@ -105,8 +103,6 @@ public class information extends AppCompatActivity {
                 JSONObject jsonData = jsonArray.getJSONObject(i);
                 name.setText(jsonData.getString("mb_name"));
                 mail.setText(jsonData.getString("mb_mail"));
-                new DownloadImageTask(photo)
-                        .execute(jsonData.getString("mb_pic"));
 
             }
         } catch(Exception e) {

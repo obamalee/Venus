@@ -109,10 +109,6 @@ public class edit extends AppCompatActivity {
                 });
 
 
-                CircleImageView photo= (CircleImageView) findViewById(R.id.photo);
-                new DownloadImageTask((CircleImageView) findViewById(R.id.photo))
-                        .execute(jsonData.getString("mb_pic"));
-
             }
         } catch(Exception e) {
             // Log.e("log_tag", e.toString());

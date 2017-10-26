@@ -45,9 +45,9 @@ public class login extends AppCompatActivity {
         ImageButton imageButton7 = (ImageButton) findViewById(R.id.imageButton5);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        String my_id = sharedpreferences.getString(mb_id, "");
+        String my_id = sharedpreferences.getString(mb_id, "F");
 
-        if(my_id.equals("F") || my_id == null){
+        if(my_id.equals("F") || my_id == null ){
             imageButton7.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {

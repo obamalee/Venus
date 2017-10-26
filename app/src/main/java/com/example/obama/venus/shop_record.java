@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
@@ -23,6 +22,7 @@ public class shop_record extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String mb_id = "mb_idlKey";
     SharedPreferences sharedpreferences;
+    String my_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +31,8 @@ public class shop_record extends AppCompatActivity {
 
         //抓取 mb_id
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        final String my_id = sharedpreferences.getString(mb_id, "F");
+        my_id = sharedpreferences.getString(mb_id, "F");
 
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                .detectDiskReads()
-                .detectDiskWrites()
-                .detectNetwork()
-                .penaltyLog()
-                .build());
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                .detectLeakedSqlLiteObjects()
-                .penaltyLog()
-                .penaltyDeath()
-                .build());
 
         ImageButton imageButton1 = (ImageButton) findViewById(R.id.imageButton1);
         imageButton1.setOnClickListener(new Button.OnClickListener() {
@@ -54,6 +43,9 @@ public class shop_record extends AppCompatActivity {
             }
         });
 
+        findViews();
+    }
+    private void findViews(){
         LinearLayout record_list = (LinearLayout)findViewById(R.id.record_list);
         try {
             final String result = DBConnector.executeQuery("SELECT shop.sh_name,shopping_record.updated_at,shopping_record.point" +

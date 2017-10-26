@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="   >  威尼斯影城"
+        android:text="      威尼斯影城"
         android:textAlignment="viewStart"
         android:textSize="16dp"
         />
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="   >  威尼斯報報"
+        android:text="      威尼斯報報"
         android:textAlignment="viewStart"
         android:textSize="16dp"/>
 
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="   >  特價 ON SALE"
+        android:text="      特價 ON SALE"
         android:textAlignment="viewStart"
         android:textSize="16dp" />
 
@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="   >  食 FOOD"
+        android:text="      食 FOOD"
         android:textAlignment="viewStart"
         android:textSize="16dp"/>
 
@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="   >  衣 CLOTHING"
+        android:text="      衣 CLOTHING"
         android:textAlignment="viewStart"
         android:textSize="16dp" />
 
@@ -64,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="   >  住 HOUSING"
+        android:text="      住 HOUSING"
         android:textAlignment="viewStart"
         android:textSize="16dp"/>
 
@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="   >  行  TRAFFIC"
+        android:text="      行  TRAFFIC"
         android:textAlignment="viewStart"
         android:textSize="16dp"/>
 
@@ -82,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="   >  樂 RECREATION"
+        android:text="      樂 RECREATION"
         android:textAlignment="viewStart"
         android:textSize="16dp"/>
 
@@ -91,7 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="   >  筆記本 NOTES"
+        android:text="      筆記本 NOTES"
         android:textAlignment="viewStart"
         android:textSize="16dp"/>
 

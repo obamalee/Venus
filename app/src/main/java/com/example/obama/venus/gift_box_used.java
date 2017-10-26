@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +27,7 @@ public class gift_box_used extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String mb_id = "mb_idlKey";
     SharedPreferences sharedpreferences;
+    String my_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +36,8 @@ public class gift_box_used extends AppCompatActivity {
 
         //抓取 mb_id
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String my_id = sharedpreferences.getString(mb_id, "F");
+        my_id = sharedpreferences.getString(mb_id, "F");
 
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                .detectDiskReads()
-                .detectDiskWrites()
-                .detectNetwork()
-                .penaltyLog()
-                .build());
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                .detectLeakedSqlLiteObjects()
-                .penaltyLog()
-                .penaltyDeath()
-                .build());
 
         ImageButton imageButton1 = (ImageButton) findViewById(R.id.imageButton1);
         imageButton1.setOnClickListener(new Button.OnClickListener() {
@@ -58,7 +47,10 @@ public class gift_box_used extends AppCompatActivity {
                 gift_box_used.this.finish();
             }
         });
+        findViews();
+    }
 
+    private void findViews(){
         LinearLayout gift_list = (LinearLayout)findViewById(R.id.gift_list);
         try {
             final String result = DBConnector.executeQuery("SELECT * FROM gift_box INNER JOIN gift ON gift.gift_id = gift_box.gift_id INNER JOIN shop ON gift.sh_id = shop.sh_id WHERE mb_id = '"+my_id+"' AND used = 'T' ");
